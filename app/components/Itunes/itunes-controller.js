@@ -4,11 +4,26 @@ import ItunesService from "./itunes-service.js";
 
 const itunesService = new ItunesService()
 
-function drawSongs(results) {
-  console.log(results)
+function drawSongs(songs) {
+  console.log(songs)
   //YOUR CODING STARTS HERE
 
-
+  document.getElementById('songs').innerHTML = songs.map(song => `
+    <article class='card'>
+      <div class='card-header'>
+        ${song.title}
+        <br />${song.price}
+      </div>
+      <img src='${song.albumArt}' alt='album art' class='card-img-top' />
+      <div class='card-body'>
+        <h4 class='card-title'>${song.collection}</h4>
+        <h5 class='card-subtitle text-muted mb-2'>${song.artist}</h5>
+      </div>
+      <div class='card-footer'>
+        <audio src='${song.preview}' />
+      </div>
+    </article>
+  `)
 
 }
 
