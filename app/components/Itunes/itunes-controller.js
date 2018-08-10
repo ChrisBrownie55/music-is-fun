@@ -10,17 +10,16 @@ function drawSongs(songs) {
 
   document.getElementById('songs').innerHTML = songs.map(song => `
     <article class='card'>
-      <div class='card-header'>
-        ${song.title}
-        <br />${song.price}
-      </div>
       <img src='${song.albumArt}' alt='album art' class='card-img-top' />
       <div class='card-body'>
-        <h4 class='card-title'>${song.collection}</h4>
-        <h5 class='card-subtitle text-muted mb-2'>${song.artist}</h5>
+        <h3 class='card-title'>${song.title} $${song.price}</h3>
+        <h4 class='card-subtitle text-muted'>Album: ${song.collection}</h4>
+        <h5 class='card-subtitle text-muted mb-2'>Artist: ${song.artist}</h5>
       </div>
       <div class='card-footer'>
-        <audio src='${song.preview}' />
+        <audio src='${song.preview}' controls>
+          Your browser doesn't support HTML5 Audio
+        </audio>
       </div>
     </article>
   `)
