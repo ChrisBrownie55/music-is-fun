@@ -8,11 +8,11 @@ function drawSongs(songs) {
   console.log(songs)
   //YOUR CODING STARTS HERE
 
-  document.getElementById('songs').innerHTML = songs.map(song => `
+  document.getElementById('songs').innerHTML = songs.map(song => song.preview.includes('video') ? '' : `
     <article class='card col-md-4 col-sm-6'>
       <img src='${song.albumArt}' alt='album art' class='card-img-top' />
       <div class='card-body'>
-        <h3 class='card-title'>${song.title} $${song.price}</h3>
+        <h3 class='card-title'>${song.title} $${song.price || 0}</h3>
         <h4 class='card-subtitle text-muted'>Album: ${song.collection}</h4>
         <h5 class='card-subtitle text-muted mb-2'>Artist: ${song.artist}</h5>
       </div>
