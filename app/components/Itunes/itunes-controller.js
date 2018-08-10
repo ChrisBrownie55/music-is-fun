@@ -9,7 +9,7 @@ function drawSongs(songs) {
   //YOUR CODING STARTS HERE
 
   document.getElementById('songs').innerHTML = songs.map(song => `
-    <article class='card'>
+    <article class='card col-md-4 col-sm-6'>
       <img src='${song.albumArt}' alt='album art' class='card-img-top' />
       <div class='card-body'>
         <h3 class='card-title'>${song.title} $${song.price}</h3>
