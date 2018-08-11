@@ -72,3 +72,8 @@ html {
     height: 20px;
   }
 }
+
+.card {
+  padding-left: 0;
+  padding-right: 0;
+}
