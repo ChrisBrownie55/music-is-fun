@@ -84,3 +84,7 @@ h3.card-title {
 h5.card-subtitle {
   line-height: 1.6rem;
 }
+
+.r-10 {
+  right: 10px;
+}

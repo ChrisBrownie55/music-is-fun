@@ -15,8 +15,10 @@ function drawSongs(songs) {
     <article class='card mx-2 my-2' style='width: 20rem'>
       <img src='${song.albumArt}' alt='album art' class='card-img-top' />
       <div class='card-body'>
-        <h3 class='card-title text-truncate mb-1'>${song.title} $${song.price ||
-              0}</h3>
+        <h3 class='card-title text-truncate w-75 mb-1'>
+          ${song.title}
+          <span class='position-absolute r-10'>$${song.price || 0}</span>
+        </h3>
         <h5 class='card-subtitle text-muted text-truncate mb-1'>Album:
           <span class='font-weight-normal'>${song.collection}</span>
         </h5>
