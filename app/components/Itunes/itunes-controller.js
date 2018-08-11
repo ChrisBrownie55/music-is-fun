@@ -1,14 +1,17 @@
-import ItunesService from "./itunes-service.js";
+import ItunesService from './itunes-service.js';
 
 //PRIVATE
 
-const itunesService = new ItunesService()
+const itunesService = new ItunesService();
 
 function drawSongs(songs) {
-  console.log(songs)
-  //YOUR CODING STARTS HERE
-
-  document.getElementById('songs').innerHTML = songs.map(song => song.preview.includes('video') ? '' : `
+  // console.log(songs);
+  document.getElementById('songs').innerHTML = songs
+    .map(
+      song =>
+        song.preview.includes('video')
+          ? ''
+          : `
     <article class='card col-md-4 col-sm-6'>
       <img src='${song.albumArt}' alt='album art' class='card-img-top' />
       <div class='card-body'>
@@ -22,28 +25,25 @@ function drawSongs(songs) {
         </audio>
       </div>
     </article>
-  `)
-
+  `
+    )
+    .join('');
 }
-
 
 //PUBLIC
 class ItunesController {
-  //DO NOT MODIFY THIS METHOD
-  getMusic(e) {
-    e.preventDefault();
-    var artist = e.target.artist.value;
-    //changes the button to loading while songs load
-    $('#get-music-button').text('LOADING....');
-    itunesService.getMusicByArtist(artist).then(results => {
-      drawSongs(results)
-      //changes button back to GET MUSIC once songs are loaded
-      $('#get-music-button').text('GET MUSIC');
-    })
+  getMusic(event) {
+    event.preventDefault();
+    var artist = event.target.artist.value;
+    itunesService
+      .getMusicByArtist(artist)
+      .then(
+        songs => (
+          setTimeout(() => drawSongs(songs), 250),
+          event.target.parentNode.classList.add('pushed-up')
+        )
+      );
   }
-
-
 }
 
-
-export default ItunesController
+export default ItunesController;
