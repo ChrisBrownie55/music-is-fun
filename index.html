@@ -12,15 +12,16 @@
 </head>
 
 <body>
+  <div class="header-background"></div>
   <main class='container-fluid main-form-wrapper'>
-    <form class="form-inline d-flex justify-content-center main-form" onsubmit="app.controllers.itunesCtrl.getMusic(event)">
-      <h1 class='display-1 mb-5'>Music Is Fun!</h1>
-      <div class="form-group">
-        <input type="text" class="form-control mr-2" name="artist" placeholder="Artist Name" />
+    <form class="form-inline w-100 d-flex justify-content-center main-form flex-column" onsubmit="app.controllers.itunesCtrl.getMusic(event)">
+      <h1 class='display-2 mb-5 font-lato'>Music Is Fun!</h1>
+      <div class="form-group d-flex flex-row flex-wrap justify-content-center">
+        <input type="text" class="form-control mw-75 mr-2 mb-2" name="artist" placeholder="Artist Name" />
         <div class='loading-symbol'>
           <div></div>
         </div>
-        <button type="submit" class="btn btn-primary" id="get-music-button">Get Music</button>
+        <button type="submit" class="btn btn-primary mb-2" id="get-music-button">Get Music</button>
       </div>
     </form>
     <section class="row text-center"></section>
