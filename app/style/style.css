@@ -12,24 +12,25 @@ html {
   padding-top: 65vh;
 }
 
-.header-background {
-  --blur: 6px;
+.header-background-wrapper {
   position: absolute;
-  top: calc(-1 * var(--blur));
-  left: calc(-1 * var(--blur));
-  width: calc(100% + calc(2 * var(--blur)));
-  height: calc(100vh + calc(2 * var(--blur)));
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.header-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url('http://wallpapers-hd.eu/wp-content/uploads/2015/02/qlimax_festival-1920x1080-1600x1080.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  filter: blur(var(--blur)) brightness(50%);
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--blur)),
-    0 calc(100% - var(--blur))
-  );
+  filter: brightness(4%);
 }
 
 .main-form {
