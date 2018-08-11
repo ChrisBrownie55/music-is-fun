@@ -9,11 +9,13 @@ function drawSongs(songs) {
   document.getElementById('songs').innerHTML = songs
     .map(
       song =>
-        song.preview.includes('video')
+        !song.preview || song.preview.includes('video')
           ? ''
           : `
-    <article class='card mx-2 my-2' style='width: 20rem'>
-      <img src='${song.albumArt}' alt='album art' class='card-img-top' />
+    <article class='card mx-2 my-2 fade' style='width: 20rem'>
+      <img src='${
+        song.albumArt
+      }' alt='album art' class='card-img-top' width='250' height='250' style='object-fit: cover'/>
       <div class='card-body'>
         <h3 class='card-title text-truncate w-75 mb-1'>
           ${song.title}
@@ -37,6 +39,14 @@ function drawSongs(songs) {
   `
     )
     .join('');
+
+  setTimeout(
+    () =>
+      document
+        .querySelectorAll('#songs > article')
+        .forEach(song => song.classList.add('show')),
+    250
+  );
 }
 
 //PUBLIC
@@ -44,14 +54,39 @@ class ItunesController {
   getMusic(event) {
     event.preventDefault();
     var artist = event.target.artist.value;
-    itunesService
-      .getMusicByArtist(artist)
-      .then(
-        songs => (
-          setTimeout(() => drawSongs(songs), 250),
-          event.target.parentNode.classList.add('pushed-up')
-        )
-      );
+    const loader = document.getElementById('loader');
+    const formInputWrapper = event.target.children[1];
+    const hideInputAnimation = formInputWrapper.animate(
+      [
+        { width: '100%', flexWrap: 'nowrap', overflow: 'hidden' },
+        { width: '0%', flexWrap: 'nowrap', overflow: 'hidden' }
+      ],
+      {
+        duration: 250,
+        fill: 'forwards',
+        easing: 'ease-in-out'
+      }
+    );
+    hideInputAnimation.onfinish = () => loader.classList.add('active');
+    itunesService.getMusicByArtist(artist).then(songs =>
+      setTimeout(() => {
+        setTimeout(() => drawSongs(songs), 250);
+        event.target.parentNode.classList.add('pushed-up');
+        loader.classList.remove('active');
+        formInputWrapper.animate(
+          [
+            { width: '0%', flexWrap: 'nowrap', overflow: 'hidden' },
+            { width: '100%', flexWrap: 'wrap', overflow: 'hidden' }
+          ],
+          {
+            duration: 250,
+            delay: 250,
+            easing: 'ease-in-out',
+            fill: 'forwards'
+          }
+        );
+      }, 500)
+    );
   }
 
   playAudio(target) {

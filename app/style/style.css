@@ -5,6 +5,7 @@ html {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .main-form-wrapper {
@@ -12,15 +13,23 @@ html {
 }
 
 .header-background {
+  --blur: 6px;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  top: calc(-1 * var(--blur));
+  left: calc(-1 * var(--blur));
+  width: calc(100% + calc(2 * var(--blur)));
+  height: calc(100vh + calc(2 * var(--blur)));
   background-image: url('http://wallpapers-hd.eu/wp-content/uploads/2015/02/qlimax_festival-1920x1080-1600x1080.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  filter: blur(var(--blur)) brightness(50%);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--blur)),
+    0 calc(100% - var(--blur))
+  );
 }
 
 .main-form {
@@ -50,31 +59,31 @@ html {
   width: 0;
   height: 0;
   border-radius: 100%;
-  background-color: #007bff;
+  background-color: white;
   position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 .loading-symbol div {
-  -webkit-animation: bounce 1.4s 0.16s infinite;
-  animation: bounce 1.4s 0.16s infinite;
+  -webkit-animation: bounce 1.2s 0.14s infinite;
+  animation: bounce 1.2s 0.14s infinite;
   left: 50%;
 }
 .loading-symbol::before {
-  left: -70%;
-  -webkit-animation: bounce 1.4s infinite;
-  animation: bounce 1.4s infinite;
+  left: -100%;
+  -webkit-animation: bounce 1.2s infinite;
+  animation: bounce 1.2s infinite;
 }
 .loading-symbol::after {
-  right: -70%;
-  -webkit-animation: bounce 1.4s 0.32s infinite;
-  animation: bounce 1.4s 0.32s infinite;
+  right: -100%;
+  -webkit-animation: bounce 1.2s 0.28s infinite;
+  animation: bounce 1.2s 0.28s infinite;
   -webkit-transform: translate(50%, -50%);
   transform: translate(50%, -50%);
 }
 
-@-webkit-keyframes bounce {
+@keyframes bounce {
   0%,
   80%,
   100% {
