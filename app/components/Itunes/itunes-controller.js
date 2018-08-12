@@ -89,7 +89,8 @@ class ItunesController {
   getMusic(event) {
     event.preventDefault();
 
-    var artist = event.target.artist.value;
+    event.target.artist.blur();
+    const artist = event.target.artist.value;
     const loader = document.getElementById('loader');
 
     const formInputWrapper = event.target.children[1];
@@ -134,7 +135,6 @@ class ItunesController {
   }
 
   playAudio(target) {
-    console.log('playing audio');
     document
       .querySelectorAll('.itunes-preview')
       .forEach(audioElement => audioElement !== target && audioElement.pause());
