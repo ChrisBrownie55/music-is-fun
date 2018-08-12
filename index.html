@@ -17,7 +17,7 @@
     <form class="form-inline w-100 d-flex justify-content-center main-form flex-column" onsubmit="app.controllers.itunesCtrl.getMusic(event)">
       <h1 class='display-2 mb-5 font-lato'>Music Is Fun!</h1>
       <div class="form-group d-flex flex-row flex-wrap justify-content-center pt-1 overflow-hidden w-100">
-        <input type="text" class="form-control mw-75 mr-2 mb-2" name="artist" placeholder="Artist Name" />
+        <input type="text" class="form-control mw-75 mr-2 mb-2" name="artist" placeholder="Artist Name" required />
         <button type="submit" class="btn btn-primary mb-2" id="get-music-button">Get Music</button>
       </div>
       <div class='loading-symbol' id='loader'>

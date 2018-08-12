@@ -48,9 +48,12 @@ function drawSongs(songs, artistName) {
             </h5>
           </div>
           <div class='card-footer'>
-            <audio class='itunes-preview' onplay='app.controllers.itunesCtrl.playAudio(event.target)' src='${
-              song.preview
-            }' controls>
+            <audio
+              class='itunes-preview'
+              onplay='app.controllers.itunesCtrl.playAudio(event.target)'
+              src='${song.preview}'
+              controls
+            >
               Your browser doesn't support HTML5 Audio
             </audio>
           </div>
@@ -103,28 +106,31 @@ class ItunesController {
     );
     hideInputAnimation.onfinish = () => loader.classList.add('active');
 
-    itunesService.getMusicByArtist(artist).then(songs =>
-      setTimeout(() => {
-        setTimeout(() => drawSongs(songs, artist), 250);
+    itunesService
+      .getMusicByArtist(artist)
+      .then(songs =>
+        setTimeout(() => {
+          setTimeout(() => drawSongs(songs, artist), 250);
 
-        event.target.parentNode.classList.add('pushed-up');
+          event.target.parentNode.classList.add('pushed-up');
 
-        loader.classList.remove('active');
+          loader.classList.remove('active');
 
-        formInputWrapper.animate(
-          [
-            { width: '0%', flexWrap: 'nowrap', overflow: 'hidden' },
-            { width: '100%', flexWrap: 'wrap', overflow: 'hidden' }
-          ],
-          {
-            duration: 250,
-            delay: 250,
-            easing: 'ease-in-out',
-            fill: 'forwards'
-          }
-        );
-      }, 500)
-    );
+          formInputWrapper.animate(
+            [
+              { width: '0%', flexWrap: 'nowrap', overflow: 'hidden' },
+              { width: '100%', flexWrap: 'wrap', overflow: 'hidden' }
+            ],
+            {
+              duration: 250,
+              delay: 250,
+              easing: 'ease-in-out',
+              fill: 'forwards'
+            }
+          );
+        }, 500)
+      )
+      .catch(error => console.error(`An error occurred: ${error}`));
   }
 
   playAudio(target) {
